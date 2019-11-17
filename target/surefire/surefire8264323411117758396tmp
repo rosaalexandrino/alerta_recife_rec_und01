@@ -1,0 +1,8 @@
+#surefire
+#Thu Nov 07 21:09:29 GFT 2019
+maven.ext.class.path=C\:\\Program Files\\NetBeans 8.2\\java\\maven-nblib\\netbeans-eventspy.jar
+user.dir=C\:\\Users\\rosaa\\Desktop\\alerta_recife-unid01
+file.encoding=UTF-8
+localRepository=C\:\\Users\\rosaa\\.m2\\repository
+basedir=C\:\\Users\\rosaa\\Desktop\\alerta_recife-unid01
+test=ifpe.recife.tads.test.AdministradorCRUDTest
