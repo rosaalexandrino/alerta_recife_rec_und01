@@ -23,6 +23,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.NamedNativeQueries;
+import org.hibernate.annotations.NamedNativeQuery;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -47,15 +49,60 @@ import org.hibernate.validator.constraints.NotBlank;
             ,
             @NamedQuery(
                     name = "Usuario.RecuperarTelefones",
-                    query = "SELECT u.primeiroNome, u.ultimoNome, ut.numero FROM Usuario u JOIN u.telefones ut WHERE u.id = :id GROUP BY u.primeiroNome, u.ultimoNome"
+                    query = "SELECT u.primeiroNome, u.ultimoNome, ut.numero FROM Usuario u JOIN u.telefones ut WHERE u.id = :id"
             )
             ,
             @NamedQuery(
                     name = "Usuario.RecuperarSolicitacoes",
-                    query = "SELECT u.primeiroNome, u.ultimoNome, s.descricao FROM Usuario u JOIN u.solicitacao s WHERE u.id = :id GROUP BY u.primeiroNome, u.ultimoNome"
+                    query = "SELECT u.primeiroNome, u.ultimoNome, s.descricao FROM Usuario u JOIN u.solicitacao s WHERE u.id = :id"
             )
         }
 )
+@NamedNativeQueries(
+        {
+            @NamedNativeQuery(
+                    name = "Usuario.RecuperarPorEmail",
+                    query = "SELECT * FROM TB_USUARIO WHERE EMAIL = ?1",
+                    resultClass = Usuario.class
+            )
+            ,
+            @NamedNativeQuery(
+                    name = "Usuario.RecuperarAtivos",
+                    query = "SELECT * FROM TB_USUARIO WHERE HABILITADO = ?1 ORDER BY PRIMEIRO_NOME",
+                    resultClass = Usuario.class
+            )
+            ,
+            @NamedNativeQuery(
+                    name = "Usuario.RecuperarPorNome",
+                    query = "SELECT * FROM TB_USUARIO WHERE PRIMEIRO_NOME LIKE ?1 OR ULTIMO_NOME LIKE ?2 ORDER BY u.PRIMEIRO_NOME",
+                    resultClass = Usuario.class
+            )
+            ,
+            @NamedNativeQuery(
+                    name = "Usuario.RecuperarTelefones",
+                    query = "SELECT u.PRIMEIRO_NOME, u.ULTIMO_NOME, t.NUMERO FROM TB_USUARIO AS u JOIN TB_USUARIO_TELEFONE AS ut ON u.ID = ut.ID_USUARIO JOIN TB_TELEFONE AS t ON t.ID = ut.ID_TELEFONE WHERE u.ID = ?1",
+                    resultClass = Usuario.class
+            )
+            ,
+            @NamedNativeQuery(
+                    name = "Usuario.RecuperarSolicitacoes",
+                    query = "SELECT u.PRIMEIRO_NOME, u.ULTIMO_NOME, s.DESCRICAO FROM TB_USUARIO AS u JOIN TB_SOLICITACAO AS s ON u.ID = s.ID_USUARIO WHERE u.ID = ?1",
+                    resultClass = Usuario.class
+            )
+            ,
+            @NamedNativeQuery(
+                    name = "Usuario.DeletaPorIdSQL",
+                    query = "DELETE FROM TB_USUARIO WHERE ID = ?1",
+                    resultClass = Usuario.class
+            ),
+            @NamedNativeQuery(
+                    name = "Usuario.AtualizaSenhaUsuarioSQL",
+                    query = "UPDATE TB_USUARIO SET SENHA = ?1 WHERE ID = ?2",
+                    resultClass = Usuario.class
+            )
+        }
+)
+
 @Access(AccessType.FIELD)
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario implements Serializable {
@@ -100,7 +147,7 @@ public class Usuario implements Serializable {
     @Column(name = "ULTIMO_NOME", length = 50)
     private String ultimoNome;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "TB_USUARIO_TELEFONE", joinColumns
             = {
                 @JoinColumn(name = "ID_USUARIO")}, inverseJoinColumns

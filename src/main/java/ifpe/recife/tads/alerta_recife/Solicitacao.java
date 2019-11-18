@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -68,6 +69,11 @@ import org.hibernate.validator.constraints.NotBlank;
                     resultClass = Solicitacao.class
             ),
             @NamedNativeQuery(
+                    name = "Solicitacao.RecuperarPorUsuarioSQL",
+                    query = "SELECT * FROM TB_SOLICITACAO WHERE ID_USUARIO = ?1",
+                    resultClass = Solicitacao.class                            
+            ),
+            @NamedNativeQuery(
                     name = "Solicitacao.AtualizaDataConclusaoSolicitacaoSQL",
                     query = "UPDATE TB_SOLICITACAO SET DATA_CONCLUSAO = ?1 WHERE ID = ?2",
                     resultClass = Solicitacao.class
@@ -106,7 +112,7 @@ public class Solicitacao implements Serializable {
     private Endereco endereco;
 
     @NotNull(message = "{ifpe.recife.tads.alerta_recife.Solicitacao.usuario_required}")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID")
     private Usuario usuario;
 

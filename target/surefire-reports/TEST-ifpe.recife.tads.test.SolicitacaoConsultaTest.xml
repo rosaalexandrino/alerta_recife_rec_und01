@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="7" failures="0" name="ifpe.recife.tads.test.SolicitacaoConsultaTest" time="25.528" errors="0" skipped="0">
+<testsuite tests="7" failures="0" name="ifpe.recife.tads.test.SolicitacaoConsultaTest" time="27.22" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_161\jre\bin"/>
@@ -62,11 +62,11 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="ifpe.recife.tads.test.SolicitacaoConsultaTest" name="t01_recuperaSolicitacaoPorDescricaoJPQL" time="0.262"/>
-  <testcase classname="ifpe.recife.tads.test.SolicitacaoConsultaTest" name="t02_recuperaSolicitacaoPorTipoJPQL" time="0.043"/>
-  <testcase classname="ifpe.recife.tads.test.SolicitacaoConsultaTest" name="t03_recuperaNaoAtendidosJPQL" time="0.05"/>
-  <testcase classname="ifpe.recife.tads.test.SolicitacaoConsultaTest" name="t04_recuperaPorDescricaoSQL" time="0.036"/>
-  <testcase classname="ifpe.recife.tads.test.SolicitacaoConsultaTest" name="t05_recuperaPorTipoSQL" time="0.041"/>
-  <testcase classname="ifpe.recife.tads.test.SolicitacaoConsultaTest" name="t06_recuperaPorDataSolicitacaoSQL" time="0.038"/>
-  <testcase classname="ifpe.recife.tads.test.SolicitacaoConsultaTest" name="t07_recuperaPorDataConclusaoSQL" time="0.019"/>
+  <testcase classname="ifpe.recife.tads.test.SolicitacaoConsultaTest" name="t01_recuperaSolicitacaoPorDescricaoJPQL" time="0.281"/>
+  <testcase classname="ifpe.recife.tads.test.SolicitacaoConsultaTest" name="t02_recuperaSolicitacaoPorTipoJPQL" time="0.015"/>
+  <testcase classname="ifpe.recife.tads.test.SolicitacaoConsultaTest" name="t03_recuperaNaoAtendidosJPQL" time="0.047"/>
+  <testcase classname="ifpe.recife.tads.test.SolicitacaoConsultaTest" name="t04_recuperaPorDescricaoSQL" time="0.031"/>
+  <testcase classname="ifpe.recife.tads.test.SolicitacaoConsultaTest" name="t05_recuperaPorTipoSQL" time="0.032"/>
+  <testcase classname="ifpe.recife.tads.test.SolicitacaoConsultaTest" name="t06_recuperaPorDataSolicitacaoSQL" time="0.031"/>
+  <testcase classname="ifpe.recife.tads.test.SolicitacaoConsultaTest" name="t07_recuperaPorDataConclusaoSQL" time="0.016"/>
 </testsuite>

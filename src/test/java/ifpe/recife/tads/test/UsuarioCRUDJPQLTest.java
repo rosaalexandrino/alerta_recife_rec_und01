@@ -1,11 +1,7 @@
 package ifpe.recife.tads.test;
 
-import ifpe.recife.tads.alerta_recife.Administrador;
-import ifpe.recife.tads.alerta_recife.Cargo;
-import ifpe.recife.tads.alerta_recife.Contato;
 import ifpe.recife.tads.alerta_recife.Usuario;
-import ifpe.recife.tads.test.DataSet;
-import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.CacheRetrieveMode;
@@ -14,7 +10,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -24,6 +22,8 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@SuppressWarnings("JPQLValidation")
 public class UsuarioCRUDJPQLTest {
 
     private static EntityManagerFactory emf;
@@ -87,7 +87,6 @@ public class UsuarioCRUDJPQLTest {
 
     }
 
-    // Cria novo usuário
     @Test
     public void t01_criaUsuario() {
 
@@ -104,59 +103,76 @@ public class UsuarioCRUDJPQLTest {
 
     }
     
-    // Atualiza em:
-    // <TB_USUARIO email ="joanamendonca@gmail.com" senha = "aopHMXX9" primeiro_nome = "Joana" ultimo_nome = "Mendonça" habilitado = "0" />
     @Test
-    public void t02_atualizaDado() {
-        logger.info("Executando: atualizaDado");
-        Usuario usuario;
-        TypedQuery<Usuario> query = em.createNamedQuery("Usuario.RecuperarPorEmail", Usuario.class);
+    public void t02_criaUsuarioInvalido() {
+
+        logger.info("Executando: criaUsuarioInvalido");
+        Usuario usuario = new Usuario();
+        usuario.setEmail("alberto.freitas");
+        usuario.setPrimeiroNome("Alberto");
+        usuario.setUltimoNome("Freitas");
+        usuario.setSenha("qu/////@@33534@@@@@@@@@");
+        usuario.setHabilitado(true);
+        
+        Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+        Set<ConstraintViolation<Usuario>> constraintViolations = validator.validate(usuario);
+
+        if (logger.isLoggable(Level.INFO)) {
+            for (ConstraintViolation violation : constraintViolations) {
+                Logger.getGlobal().log(Level.INFO, "{0}.{1}: {2}", new Object[]{violation.getRootBeanClass(), violation.getPropertyPath(), violation.getMessage()});
+            }
+        }
+
+        assertEquals(3, constraintViolations.size());
+
+    }
+    
+    @Test
+    public void t03_atualizaUsuario() {
+        
+        logger.info("Executando: atualizaUsuario");
+        Query query = em.createNamedQuery("Usuario.RecuperarPorEmail", Usuario.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         query.setParameter("email", "joanamendonca@gmail.com");
-        usuario = (Usuario) query.getSingleResult();
-        usuario.setUltimoNome("Souza"); // A usuária optou por usar o sobrenome de casamento
+        Usuario usuario = (Usuario) query.getSingleResult();
+        usuario.setUltimoNome("Souza");
         em.flush();
         usuario = (Usuario) query.getSingleResult();
         assertEquals("Souza", usuario.getUltimoNome());
         
     }
     
-    
-    // Atualização em:
-    // <TB_USUARIO email ="mariojorge@outlook.com" senha = "2pKbVjpe" primeiro_nome = "Mario" ultimo_nome = "Jorge" habilitado = "1" />
     @Test
-    public void t03_atualizaDadoMerge() {
+    public void t04_atualizaUsuarioMerge() {
 
-        logger.info("Executando: atualizaDadoMerge");
-        Usuario usuario;
-        TypedQuery<Usuario> query = em.createNamedQuery("Usuario.RecuperarPorEmail", Usuario.class);
+        logger.info("Executando: atualizaUsuarioMerge");
+        Query query = em.createNamedQuery("Usuario.RecuperarPorEmail", Usuario.class);
         query.setParameter("email", "mariojorge@outlook.com");
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        usuario = (Usuario) query.getSingleResult();
+        Usuario usuario = (Usuario) query.getSingleResult();
         assertNotNull(usuario);        
         em.clear();
         usuario.setHabilitado(false);
         em.merge(usuario);
         em.flush();
         usuario = (Usuario) query.getSingleResult();
-        assertEquals(false, usuario.isHabilitado());       
+        assertEquals(false, usuario.isHabilitado());    
+        
     }
     
-    
-    // Remoção de dados
     @Test
-    public void t04_removeUsuario() {
+    public void t05_removeUsuario() {
 
         logger.info("Executando: removeUsuario");
-        TypedQuery<Usuario> query = em.createNamedQuery("Usuario.RecuperarAtivos", Usuario.class);
-        query.setParameter("habilitado", true);
-        List<Usuario> usuarios = query.getResultList();
-        usuarios.forEach((Usuario usuario) -> {
-            assertNotNull(usuario);
-            em.remove(usuario);
-        });        
+        Query query = em.createNamedQuery("Usuario.RecuperarPorEmail", Usuario.class);
+        query.setParameter("email", "mariojorge@outlook.com");
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        Usuario usuario = (Usuario) query.getSingleResult();
+        assertNotNull(usuario);
+        em.remove(usuario);
+        em.flush();
+        assertEquals(0, query.getResultList().size());
         
-        assertEquals(0, query.getResultList().size());        
     }
     
 }
