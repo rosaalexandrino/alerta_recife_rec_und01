@@ -90,42 +90,82 @@ public class UsuarioConsultaTest {
     }
 
     @Test
-    public void t01_recuperaUsuarioPorEmail() {
+    public void t01_recuperaUsuarioPorEmailJPQL() {
 
-        logger.info("Executando: recuperaUsuarioPorEmail");
-        TypedQuery<Usuario> query = em.createNamedQuery("Usuario.RecuperarPorEmail", Usuario.class);
+        logger.info("Executando: recuperaUsuarioPorEmailJPQL");
+        Query query = em.createNamedQuery("Usuario.RecuperarPorEmail", Usuario.class);
         query.setParameter("email", "marcoslima@yahoo.com");
         Usuario usuario = (Usuario) query.getSingleResult();
         assertTrue(usuario.getEmail().equals("marcoslima@yahoo.com"));
 
     }
-    
-    @Test
-    public void t02_recuperaUsuariosAtivos() {
 
-        logger.info("Executando: recuperaUsuariosAtivos");
-        TypedQuery<Usuario> query = em.createNamedQuery("Usuario.RecuperarAtivos", Usuario.class);
+    @Test
+    public void t02_recuperaUsuariosAtivosJPQL() {
+
+        logger.info("Executando: recuperaUsuariosAtivosJPQL");
+        Query query = em.createNamedQuery("Usuario.RecuperarAtivos", Usuario.class);
         query.setParameter("habilitado", true);
         List<Usuario> usuarios = query.getResultList();
         usuarios.forEach((Usuario usuario) -> {
             assertTrue(usuario.isHabilitado());
         });
         assertEquals(13, usuarios.size());
-        
+
     }
-   
-//    @Test
-//    public void t05_removeUsuario() {
-//
-//        logger.info("Executando: removeUsuario");
-//        TypedQuery<Usuario> query = em.createNamedQuery("Usuario.RecuperarPorEmail", Usuario.class);
-//        query.setParameter("email", "marcoslima@yahoo.com");
-//        Usuario usuario = (Usuario) query.getSingleResult();
-//        assertNotNull(usuario);
-//        em.remove(usuario);
-//        em.flush();
-//        assertEquals(0, query.getResultList().size());
-//
-//    }
+
+    @Test
+    public void t03_recuperarPorNomeJPQL() {
+
+        logger.info("Executando: recuperarPorNomeJPQL");
+        Query query = em.createNamedQuery("Usuario.RecuperarPorNome", Usuario.class);
+        query.setParameter("nome", "%Silva%");
+        query.setParameter("sobrenome", "%Silva%");
+        List<Usuario> usuarios = query.getResultList();
+        usuarios.forEach((Usuario usuario) -> {
+            assertTrue(usuario.isHabilitado());
+        });
+        assertEquals(2, usuarios.size());
+
+    }
+    @Test
+    public void t04_recuperaUsuarioPorEmailSQL() {
+
+        logger.info("Executando: recuperaUsuarioPorEmailSQL");
+        Query query = em.createNamedQuery("Usuario.RecuperarPorEmailSQL");
+        query.setParameter(1, "marcoslima@yahoo.com");
+        Usuario usuario = (Usuario) query.getSingleResult();
+        assertTrue(usuario.getEmail().equals("marcoslima@yahoo.com"));
+
+    }
+    
+    @Test
+    public void t05_recuperaUsuariosAtivosSQL() {
+
+        logger.info("Executando: recuperaUsuariosAtivosSQL");
+        Query query = em.createNamedQuery("Usuario.RecuperarAtivosSQL");
+        query.setParameter(1, true);
+        List<Usuario> usuarios = query.getResultList();
+        usuarios.forEach((Usuario usuario) -> {
+            assertTrue(usuario.isHabilitado());
+        });
+        assertEquals(13, usuarios.size());
+
+    }
+
+    @Test
+    public void t06_recuperarPorNomeSQL() {
+
+        logger.info("Executando: recuperarPorNomeSQL");
+        Query query = em.createNamedQuery("Usuario.RecuperarPorNomeSQL");
+        query.setParameter(1, "%Silva%");
+        query.setParameter(2, "%Silva%");
+        List<Usuario> usuarios = query.getResultList();
+        usuarios.forEach((Usuario usuario) -> {
+            assertTrue(usuario.isHabilitado());
+        });
+        assertEquals(2, usuarios.size());
+
+    }
 
 }

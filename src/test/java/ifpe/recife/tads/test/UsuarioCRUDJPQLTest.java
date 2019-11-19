@@ -1,6 +1,9 @@
 package ifpe.recife.tads.test;
 
+import ifpe.recife.tads.alerta_recife.Telefone;
 import ifpe.recife.tads.alerta_recife.Usuario;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -97,6 +100,14 @@ public class UsuarioCRUDJPQLTest {
         usuario.setUltimoNome("Dantas");
         usuario.setSenha("queue");
         usuario.setHabilitado(true);
+        
+        Telefone telefone = new Telefone();
+        telefone.setDdd("081");
+        telefone.setNumero("997934730");
+        List<Telefone> telefones = new ArrayList<Telefone>();
+        telefones.add(telefone);
+       
+        usuario.setTelefones(telefones);
         em.persist(usuario);
         em.flush();
         assertNotNull(usuario.getId());

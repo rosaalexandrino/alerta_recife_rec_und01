@@ -46,47 +46,25 @@ import org.hibernate.validator.constraints.NotBlank;
                     name = "Usuario.RecuperarPorNome",
                     query = "SELECT u FROM Usuario u WHERE u.primeiroNome LIKE :nome OR u.ultimoNome LIKE :sobrenome ORDER BY u.primeiroNome"
             )
-            ,
-            @NamedQuery(
-                    name = "Usuario.RecuperarTelefones",
-                    query = "SELECT u.primeiroNome, u.ultimoNome, ut.numero FROM Usuario u JOIN u.telefones ut WHERE u.id = :id"
-            )
-            ,
-            @NamedQuery(
-                    name = "Usuario.RecuperarSolicitacoes",
-                    query = "SELECT u.primeiroNome, u.ultimoNome, s.descricao FROM Usuario u JOIN u.solicitacao s WHERE u.id = :id"
-            )
         }
 )
 @NamedNativeQueries(
         {
             @NamedNativeQuery(
-                    name = "Usuario.RecuperarPorEmail",
-                    query = "SELECT * FROM TB_USUARIO WHERE EMAIL = ?1",
+                    name = "Usuario.RecuperarPorEmailSQL",
+                    query = "SELECT *, 0 as clazz_ FROM TB_USUARIO WHERE EMAIL = ?1",
                     resultClass = Usuario.class
             )
             ,
             @NamedNativeQuery(
-                    name = "Usuario.RecuperarAtivos",
-                    query = "SELECT * FROM TB_USUARIO WHERE HABILITADO = ?1 ORDER BY PRIMEIRO_NOME",
+                    name = "Usuario.RecuperarAtivosSQL",
+                    query = "SELECT *, 0 as clazz_ FROM TB_USUARIO WHERE HABILITADO = ?1 ORDER BY PRIMEIRO_NOME",
                     resultClass = Usuario.class
             )
             ,
             @NamedNativeQuery(
-                    name = "Usuario.RecuperarPorNome",
-                    query = "SELECT * FROM TB_USUARIO WHERE PRIMEIRO_NOME LIKE ?1 OR ULTIMO_NOME LIKE ?2 ORDER BY u.PRIMEIRO_NOME",
-                    resultClass = Usuario.class
-            )
-            ,
-            @NamedNativeQuery(
-                    name = "Usuario.RecuperarTelefones",
-                    query = "SELECT u.PRIMEIRO_NOME, u.ULTIMO_NOME, t.NUMERO FROM TB_USUARIO AS u JOIN TB_USUARIO_TELEFONE AS ut ON u.ID = ut.ID_USUARIO JOIN TB_TELEFONE AS t ON t.ID = ut.ID_TELEFONE WHERE u.ID = ?1",
-                    resultClass = Usuario.class
-            )
-            ,
-            @NamedNativeQuery(
-                    name = "Usuario.RecuperarSolicitacoes",
-                    query = "SELECT u.PRIMEIRO_NOME, u.ULTIMO_NOME, s.DESCRICAO FROM TB_USUARIO AS u JOIN TB_SOLICITACAO AS s ON u.ID = s.ID_USUARIO WHERE u.ID = ?1",
+                    name = "Usuario.RecuperarPorNomeSQL",
+                    query = "SELECT *, 0 as clazz_ FROM TB_USUARIO WHERE PRIMEIRO_NOME LIKE ?1 OR ULTIMO_NOME LIKE ?2 ORDER BY PRIMEIRO_NOME",
                     resultClass = Usuario.class
             )
             ,
