@@ -1,6 +1,6 @@
 package ifpe.recife.tads.test;
 
-import ifpe.recife.tads.alerta_recife.Contato;
+import ifpe.recife.tads.alerta_recife.Coordenada;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
@@ -10,25 +10,23 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import static org.junit.Assert.*;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @SuppressWarnings("JPQLValidation")
-public class ContatoCRUDSQLTest {
+public class CoordenadaConsultaTest {
 
     private static EntityManagerFactory emf;
     private static Logger logger;
     private EntityManager em;
     private EntityTransaction et;
 
-    public ContatoCRUDSQLTest() {
+    public CoordenadaConsultaTest() {
     }
 
     @BeforeClass
@@ -85,29 +83,46 @@ public class ContatoCRUDSQLTest {
     }
 
     @Test
-    public void t01_atualizaDescricaoContatoSQL() {
+    public void t01_recuperarPorPontoXJPQL() {
 
-        logger.info("Executando: atualizaDescricaoContatoSQL");
-        Query query = em.createNamedQuery("Contato.AtualizaDescricaoContatoSQL");
-        query.setParameter(1, "Defesa Civil");
-        query.setParameter(2, 2L);
-        query.executeUpdate();
-        em.flush();
-        Contato contato = em.find(Contato.class, 2L);
-        assertNotNull(contato);
-        assertEquals("Defesa Civil", contato.getDescricao());
+        logger.info("Executando: recuperarPorPontoXJPQL");
+        Query query = em.createNamedQuery("Coordenada.RecuperarPorPontoX", Coordenada.class);
+        query.setParameter("ponto", -8.0391283);
+        Coordenada coordenada = (Coordenada) query.getSingleResult();
+        assertEquals(-8.0391283, coordenada.getPontoX(), 0.0);
 
     }
 
     @Test
-    public void t02_removeContatoSQL() {
+    public void t02_recuperarPorPontoYJPQL() {
 
-        logger.info("Executando: removeContatoSQL");
-        Query queryRemove = em.createNamedQuery("Contato.RemoveContatoPorIdSQL");
-        queryRemove.setParameter(1, 1L);
-        queryRemove.executeUpdate();
-        em.flush();
-        assertEquals(null, em.find(Contato.class, 1L));
+        logger.info("Executando: recuperarPorPontoYJPQL");
+        Query query = em.createNamedQuery("Coordenada.RecuperarPorPontoY", Coordenada.class);
+        query.setParameter("ponto", -34.8238971);
+        Coordenada coordenada = (Coordenada) query.getSingleResult();
+        assertEquals(-34.8238971, coordenada.getPontoY(), 0.0);
+
+    }
+
+    @Test
+    public void t03_RecuperarPorPontoXSQL() {
+
+        logger.info("Executando: RecuperarPorPontoXSQL");
+        Query query = em.createNamedQuery("Coordenada.RecuperarPorPontoXSQL");
+        query.setParameter(1, -8.0391283);
+        Coordenada coordenada = (Coordenada) query.getSingleResult();
+        assertEquals(-8.0391283, coordenada.getPontoX(), 0.0);
+
+    }
+
+    @Test
+    public void t04_recuperarPorPontoYSQL() {
+
+        logger.info("Executando: recuperarPorPontoYSQL");
+        Query query = em.createNamedQuery("Coordenada.RecuperarPorPontoYSQL");
+        query.setParameter(1, -34.8238971);
+        Coordenada coordenada = (Coordenada) query.getSingleResult();
+        assertEquals(-34.8238971, coordenada.getPontoY(), 0.0);
 
     }
 

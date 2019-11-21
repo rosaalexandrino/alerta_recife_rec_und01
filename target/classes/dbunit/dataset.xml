@@ -50,6 +50,9 @@
     <TB_COORDENADA ponto_X = "-8.1025913" ponto_Y = "-34.9388954"/>
     <TB_COORDENADA ponto_X = "-7.9994119" ponto_Y = "-34.9349875"/>
     <TB_COORDENADA ponto_X = "-8.0363486" ponto_Y = "-34.8952972"/>
+    <TB_COORDENADA ponto_X = "-8.0391283" ponto_Y = "-34.8238971"/>
+    <TB_COORDENADA ponto_X = "-8.0321283" ponto_Y = "-34.8298971"/>
+    <TB_COORDENADA ponto_X = "-8.0321223" ponto_Y = "-34.8298991"/>
     
     <TB_ENDERECO id_coordenada = "1" rua = "Rua Leônidas Cravo Gama" numero = "120" bairro = "Afogados" cidade = "Recife"/>
     <TB_ENDERECO id_coordenada = "2" rua = "Rua Armando Silva" numero = "95" bairro = "Afogados" cidade = "Recife"/>

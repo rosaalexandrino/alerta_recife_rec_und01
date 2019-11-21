@@ -1,9 +1,6 @@
 package ifpe.recife.tads.test;
 
 import ifpe.recife.tads.alerta_recife.Telefone;
-import ifpe.recife.tads.alerta_recife.Usuario;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -95,12 +95,12 @@ public class EnderecoCRUDTest {
         
         coord.setPontoX(-8.1020010);
         coord.setPontoY(-34.9382211);
+        ender.setCoordenada(coord);
         
         ender.setRua("Rua de Teste");
         ender.setNumero("100");
         ender.setBairro("Ibura");
         ender.setCidade("Recife");
-        ender.setCoordenada(coord);
         
         ptorisco.setTipoDeRisco(TipoDeRisco.DESLIZAMENTO.tipo);
         ender.setPontoDeRisco(ptorisco);

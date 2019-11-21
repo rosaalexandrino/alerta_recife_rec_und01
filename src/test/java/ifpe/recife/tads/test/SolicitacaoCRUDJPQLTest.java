@@ -129,6 +129,7 @@ public class SolicitacaoCRUDJPQLTest {
         }
 
         assertEquals(1, constraintViolations.size());
+        
     }
 
     @Test
