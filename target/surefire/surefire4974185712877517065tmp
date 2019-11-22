@@ -1,0 +1,8 @@
+#surefire
+#Thu Nov 21 19:17:22 GFT 2019
+maven.ext.class.path=C\:\\Program Files\\NetBeans 8.2\\java\\maven-nblib\\netbeans-eventspy.jar
+user.dir=C\:\\Users\\rosaa\\Desktop\\alerta_recife-unid01
+file.encoding=UTF-8
+localRepository=C\:\\Users\\rosaa\\.m2\\repository
+basedir=C\:\\Users\\rosaa\\Desktop\\alerta_recife-unid01
+test=ifpe.recife.tads.test.AdministradorCRUDJPQLTest,ifpe.recife.tads.test.AdministradorCRUDSQLTest,ifpe.recife.tads.test.AdministradorConsultaTest,ifpe.recife.tads.test.ContatoCRUDJPQLTest,ifpe.recife.tads.test.ContatoCRUDSQLTest,ifpe.recife.tads.test.ContatoConsultaTest,ifpe.recife.tads.test.CoordenadaCRUDJPQLTest,ifpe.recife.tads.test.CoordenadaCRUDSQLTest,ifpe.recife.tads.test.CoordenadaConsultaTest,ifpe.recife.tads.test.SolicitacaoCRUDJPQLTest,ifpe.recife.tads.test.SolicitacaoCRUDSQLTest,ifpe.recife.tads.test.SolicitacaoConsultaTest,ifpe.recife.tads.test.TelefoneCRUDJPQLTest,ifpe.recife.tads.test.TelefoneCRUDSQLTest,ifpe.recife.tads.test.TelefoneConsultaTest,ifpe.recife.tads.test.UsuarioCRUDJPQLTest,ifpe.recife.tads.test.UsuarioCRUDSQLTest,ifpe.recife.tads.test.UsuarioConsultaTest

@@ -6,6 +6,7 @@ import ifpe.recife.tads.alerta_recife.TipoDeSolicitacao;
 import ifpe.recife.tads.alerta_recife.Usuario;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -99,8 +100,8 @@ public class SolicitacaoCRUDJPQLTest {
         solicitacao.setEndereco(em.find(Endereco.class, 1L));
         solicitacao.setDescricao("Solicito vistoria para encosta que deslizou atingindo imóvel");
         solicitacao.setTipoDeSolicitacao(TipoDeSolicitacao.VISTORIA.tipo);
-        Date date = Calendar.getInstance().getTime();
-        solicitacao.setDataSolicitacao(date);
+        Calendar date = new GregorianCalendar(2019,10,14);
+        solicitacao.setDataSolicitacao(date.getTime());
         em.persist(solicitacao);
         em.flush();
         assertNotNull(solicitacao.getId());

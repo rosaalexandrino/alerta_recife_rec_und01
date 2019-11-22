@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="ifpe.recife.tads.test.SolicitacaoCRUDSQLTest" time="23.466" errors="0" skipped="0">
+<testsuite tests="2" failures="0" name="ifpe.recife.tads.test.SolicitacaoCRUDSQLTest" time="34.987" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_161\jre\bin"/>
@@ -14,7 +14,7 @@
     <property name="user.country" value="BR"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value=""/>
-    <property name="test" value="ifpe.recife.tads.test.SolicitacaoCRUDSQLTest#t02_removeSolicitacaoSQL"/>
+    <property name="test" value="ifpe.recife.tads.test.AdministradorCRUDJPQLTest,ifpe.recife.tads.test.AdministradorCRUDSQLTest,ifpe.recife.tads.test.AdministradorConsultaTest,ifpe.recife.tads.test.ContatoCRUDJPQLTest,ifpe.recife.tads.test.ContatoCRUDSQLTest,ifpe.recife.tads.test.ContatoConsultaTest,ifpe.recife.tads.test.CoordenadaCRUDJPQLTest,ifpe.recife.tads.test.CoordenadaCRUDSQLTest,ifpe.recife.tads.test.CoordenadaConsultaTest,ifpe.recife.tads.test.DataSet,ifpe.recife.tads.test.EnderecoCRUDJPQLTest,ifpe.recife.tads.test.EnderecoCRUDSQLTest,ifpe.recife.tads.test.EnderecoConsultaTest,ifpe.recife.tads.test.PontoDeRiscoCRUDJPQLTest,ifpe.recife.tads.test.PontoDeRiscoCRUDSQLTest,ifpe.recife.tads.test.PontoDeRiscoConsultaTest,ifpe.recife.tads.test.SolicitacaoCRUDJPQLTest,ifpe.recife.tads.test.SolicitacaoCRUDSQLTest,ifpe.recife.tads.test.SolicitacaoConsultaTest,ifpe.recife.tads.test.TelefoneCRUDJPQLTest,ifpe.recife.tads.test.TelefoneCRUDSQLTest,ifpe.recife.tads.test.TelefoneConsultaTest,ifpe.recife.tads.test.UsuarioCRUDJPQLTest,ifpe.recife.tads.test.UsuarioCRUDSQLTest,ifpe.recife.tads.test.UsuarioConsultaTest"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="user.dir" value="C:\Users\rosaa\Desktop\alerta_recife-unid01"/>
     <property name="java.runtime.version" value="1.8.0_161-b12"/>
@@ -45,7 +45,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_161\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=ifpe.recife.tads.test.SolicitacaoCRUDSQLTest#t02_removeSolicitacaoSQL -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 surefire:test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=ifpe.recife.tads.test.AdministradorCRUDJPQLTest,ifpe.recife.tads.test.AdministradorCRUDSQLTest,ifpe.recife.tads.test.AdministradorConsultaTest,ifpe.recife.tads.test.ContatoCRUDJPQLTest,ifpe.recife.tads.test.ContatoCRUDSQLTest,ifpe.recife.tads.test.ContatoConsultaTest,ifpe.recife.tads.test.CoordenadaCRUDJPQLTest,ifpe.recife.tads.test.CoordenadaCRUDSQLTest,ifpe.recife.tads.test.CoordenadaConsultaTest,ifpe.recife.tads.test.DataSet,ifpe.recife.tads.test.EnderecoCRUDJPQLTest,ifpe.recife.tads.test.EnderecoCRUDSQLTest,ifpe.recife.tads.test.EnderecoConsultaTest,ifpe.recife.tads.test.PontoDeRiscoCRUDJPQLTest,ifpe.recife.tads.test.PontoDeRiscoCRUDSQLTest,ifpe.recife.tads.test.PontoDeRiscoConsultaTest,ifpe.recife.tads.test.SolicitacaoCRUDJPQLTest,ifpe.recife.tads.test.SolicitacaoCRUDSQLTest,ifpe.recife.tads.test.SolicitacaoConsultaTest,ifpe.recife.tads.test.TelefoneCRUDJPQLTest,ifpe.recife.tads.test.TelefoneCRUDSQLTest,ifpe.recife.tads.test.TelefoneConsultaTest,ifpe.recife.tads.test.UsuarioCRUDJPQLTest,ifpe.recife.tads.test.UsuarioCRUDSQLTest,ifpe.recife.tads.test.UsuarioConsultaTest -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 surefire:test"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="pt"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -62,5 +62,6 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="ifpe.recife.tads.test.SolicitacaoCRUDSQLTest" name="t02_removeSolicitacaoSQL" time="0.194"/>
+  <testcase classname="ifpe.recife.tads.test.SolicitacaoCRUDSQLTest" name="t01_atualizaDataConclusaoSolicitacaoSQL" time="0.13"/>
+  <testcase classname="ifpe.recife.tads.test.SolicitacaoCRUDSQLTest" name="t02_removeSolicitacaoSQL" time="0.249"/>
 </testsuite>

@@ -17,6 +17,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import org.hibernate.annotations.NamedNativeQueries;
+import org.hibernate.annotations.NamedNativeQuery;
 
 @Entity
 @Table(name = "TB_ENDERECO")
@@ -48,6 +51,41 @@ import javax.validation.constraints.NotNull;
             )
         }
 )
+@NamedNativeQueries(
+        {
+            @NamedNativeQuery(
+                    name = "Endereco.RecuperarEnderecosPorBairroSQL",
+                    query = "SELECT ID, BAIRRO, CIDADE, NUMERO, RUA, ID_COORDENADA FROM TB_ENDERECO WHERE BAIRRO = ?1",
+                    resultClass = Endereco.class
+            )
+            ,
+            @NamedNativeQuery(
+                    name = "Endereco.DeletaEnderecoSQL",
+                    query = "DELETE FROM TB_ENDERECO WHERE ID = ?1",
+                    resultClass = Endereco.class
+            ),
+            @NamedNativeQuery(
+                    name = "Endereco.AtualizaCidadeSQL",
+                    query = "UPDATE TB_ENDERECO SET CIDADE = ?1 WHERE ID = ?2",
+                    resultClass = Endereco.class
+            ),
+            @NamedNativeQuery(
+                    name = "Endereco.AtualizaBairroSQL",
+                    query = "UPDATE TB_ENDERECO SET BAIRRO = ?1 WHERE ID = ?2",
+                    resultClass = Endereco.class
+            ),
+            @NamedNativeQuery(
+                    name = "Endereco.AtualizaRuaSQL",
+                    query = "UPDATE TB_ENDERECO SET RUA = ?1 WHERE ID = ?2",
+                    resultClass = Endereco.class
+            ),
+            @NamedNativeQuery(
+                    name = "Endereco.AtualizaNumeroSQL",
+                    query = "UPDATE TB_ENDERECO SET NUMERO = ?1 WHERE ID = ?2",
+                    resultClass = Endereco.class
+            )
+        }
+)
 @Access(AccessType.FIELD)
 public class Endereco implements Serializable {
 
@@ -56,28 +94,36 @@ public class Endereco implements Serializable {
     @Column(name = "ID")
     private Long id;
 
-    @NotNull
+    @NotNull(message = "{ifpe.recife.tads.alerta_recife.Endereco.coordenada_required}")
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "ID_COORDENADA", referencedColumnName = "ID")
     private Coordenada coordenada;
 
-    @NotNull
+    @NotNull(message = "{ifpe.recife.tads.alerta_recife.Endereco.ptorisco_required}")
     @OneToOne(mappedBy = "endereco", cascade = CascadeType.ALL)
     private PontoDeRisco pontoDeRisco;
 
-    @NotNull
+    @NotNull(message = "{ifpe.recife.tads.alerta_recife.Endereco.rua_required}")
+    @Pattern(regexp = "^[0-9A-Za-z\\s]+$",
+            message = "{ifpe.recife.tads.alerta_recife.Endereco.rua_caracter}")
     @Column(name = "RUA", length = 100)
     private String rua;
 
-    @NotNull
+    @NotNull(message = "{ifpe.recife.tads.alerta_recife.Endereco.numero_required}")
+    @Pattern(regexp = "^[0-9A-Za-z\\s]+$",
+            message = "{ifpe.recife.tads.alerta_recife.Endereco.numero_caracter}")
     @Column(name = "NUMERO", length = 10)
     private String numero;
 
-    @NotNull
+    @NotNull(message = "{ifpe.recife.tads.alerta_recife.Endereco.bairro_required}")
+    @Pattern(regexp = "^[0-9A-Za-z\\s]+$",
+            message = "{ifpe.recife.tads.alerta_recife.Endereco.bairro_caracter}")
     @Column(name = "BAIRRO", length = 100)
     private String bairro;
 
-    @NotNull
+    @NotNull(message = "{ifpe.recife.tads.alerta_recife.Endereco.cidade_required}")
+    @Pattern(regexp = "^[A-Za-z\\s]+$",
+            message = "{ifpe.recife.tads.alerta_recife.Endereco.cidade_caracter}")
     @Column(name = "CIDADE", length = 100)
     private String cidade;
 

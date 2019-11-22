@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: ifpe.recife.tads.test.EnderecoCRUDJPQLTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 26.564 sec

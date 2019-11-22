@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: ifpe.recife.tads.test.ContatoCRUDJPQLTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 24.58 sec
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 41.685 sec

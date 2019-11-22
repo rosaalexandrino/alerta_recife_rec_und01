@@ -59,7 +59,6 @@ import org.hibernate.annotations.NamedNativeQuery;
             )
         }
 )
-
 @Access(AccessType.FIELD)
 public class Coordenada implements Serializable {
 

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: ifpe.recife.tads.test.CoordenadaCRUDSQLTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 33.246 sec
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 21.576 sec
